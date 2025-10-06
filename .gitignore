@@ -1,0 +1,8 @@
+# Ignore the environment variables file
+.env
+
+# Ignore Python virtual environments
+venv/
+.venv/
+# Your specific virtual environment
+market-agent-env/
