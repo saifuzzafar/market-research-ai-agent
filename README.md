@@ -4,6 +4,68 @@ Hey there! Welcome to my Market Research Agent project.
 
 This little AI is designed to help you quickly get up-to-date information on stock and crypto prices, and even get a feel for the market sentiment. It's built to be a simple, conversational tool that can handle a few different tasks for you, all in one go.
 
+## Technical Architecture
+
+### LangGraph Framework
+
+This agent is built using **LangGraph**, a powerful framework for creating stateful, multi-agent applications. LangGraph provides:
+
+- **State Management**: Maintains context and memory throughout the conversation
+- **Workflow Orchestration**: Coordinates between different tools and reasoning steps
+- **Cycle Management**: Handles the iterative thought-action-observation cycle
+- **Error Handling**: Manages tool failures and retries gracefully
+
+### ReAct Agent Pattern
+
+The agent implements the **ReAct (Reasoning + Acting)** pattern, which enables:
+
+#### How the ReAct Agent Works
+
+1. **Reasoning Phase**
+   - The agent analyzes the user query to understand intent
+   - Breaks down complex questions into manageable steps
+   - Determines which tools are needed and in what sequence
+
+2. **Acting Phase**
+   - Executes the appropriate tools with extracted parameters
+   - Calls external APIs and services
+   - Gathers real-time data from multiple sources
+
+3. **Observation Phase**
+   - Processes tool outputs and observations
+   - Evaluates if additional steps are needed
+   - Synthesizes information from multiple sources
+
+#### Agent State Flow
+
+```python
+# Simplified state representation
+agent_state = {
+    "messages": [],           # Conversation history
+    "current_thought": "",    # Current reasoning step
+    "next_action": "",        # Planned tool execution
+    "observations": [],       # Tool results and data
+    "final_answer": ""        # Compiled response
+} 
+```
+## Tool Integration
+The agent leverages LangGraph's tool calling capabilities:
+
+Dynamic Tool Selection: Automatically chooses relevant tools based on context
+
+Parameter Extraction: Intelligently extracts required parameters from natural language
+
+Error Recovery: Handles API failures and missing data gracefully
+
+Parallel Execution: Can execute multiple non-dependent tools concurrently
+
+## Memory and Context
+Conversation Memory: Maintains context across multiple turns
+
+Tool History: Remembers previous tool calls and results
+
+State Persistence: Maintains agent state throughout the execution cycle
+
 ## What it does
 
 This agent is like your own personal market analyst. Just ask it a question in plain English, and it will go out, find the data, and give you a clear answer. For example, you can ask things like:
